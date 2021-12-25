@@ -5,39 +5,91 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity2">
+
     <LinearLayout
+        android:id="@+id/radioGroup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.1"
         >
-        <EditText
-            android:id="@+id/editTextSearch"
-            android:layout_width="300dp"
+        <TextView
+            android:id="@+id/textViewFrom"
+            android:layout_width="110dp"
             android:layout_height="wrap_content"
+            android:text="Persian"
+            android:background="@drawable/radio_button"
+            android:padding="15dp"
+            android:layout_margin="10dp"
+            android:gravity="center"
             />
-        <Button
-            android:id="@+id/buttonSearch"
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="search"
+            android:text="To"
+            android:gravity="center"
             />
 
+        <TextView
+            android:id="@+id/textViewTo"
+            android:layout_width="110dp"
+            android:layout_height="wrap_content"
+            android:text="English"
+            android:background="@drawable/radio_button"
+            android:padding="15dp"
+            android:layout_margin="10dp"
+            android:gravity="center"
+            />
+        <ImageButton
+            android:id="@+id/imageButton_switch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_swap"
+            android:background="@android:color/transparent"
+            app:tint="@color/black" />
     </LinearLayout>
-    <TextView
-        android:id="@+id/textViewResult"
-        android:layout_width="wrap_content"
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.2"
-        />
+        app:layout_constraintVertical_bias="0.5"
+        >
+        <EditText
+            android:id="@+id/editTextSearch"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:hint="Enter text"
+            android:textSize="18sp"
+            android:gravity="start"
+            android:padding="10dp"
+            android:layout_margin="20dp"
+            android:background="@drawable/radio_button"
+            />
+
+        <TextView
+            android:id="@+id/textViewResult"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:hint="Translation"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:gravity="start"
+            android:padding="10dp"
+            android:layout_margin="20dp"
+            android:background="@drawable/radio_button"
+            />
+    </LinearLayout>
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

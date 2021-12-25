@@ -7,7 +7,11 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,12 +31,17 @@ public class MainActivity2 extends AppCompatActivity {
 //    public String txtSearch;
     Context context;
     private TextView textViewResult;
+    TextView textViewFrom,textViewTo;
+    ImageButton imageButton_switch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
 
+        textViewFrom=findViewById(R.id.textViewFrom);
+        textViewTo=findViewById(R.id.textViewTo);
+        imageButton_switch=findViewById(R.id.imageButton_switch);
 
         editTextSearch=findViewById(R.id.editTextSearch);
         textViewResult=findViewById(R.id.textViewResult);
@@ -46,12 +55,12 @@ public class MainActivity2 extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 String txtSearch= editTextSearch.getText().toString();
-                Log.d("test",txtSearch);
-                if (txtSearch.isEmpty()){
-                    textViewResult.setText("");
-                    return;
-                }
+//                Log.d("test",txtSearch);
+
                 getWordData(txtSearch);
+                if (editTextSearch.getText().equals("")){
+                    textViewResult.setText("5");
+                }
             }
 
             @Override
@@ -60,6 +69,19 @@ public class MainActivity2 extends AppCompatActivity {
             }
         });
 
+        imageButton_switch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(textViewFrom.getText().equals("Persian")){
+                    textViewFrom.setText("English");
+                    textViewTo.setText("Persian");
+                }
+                else{
+                    textViewFrom.setText("Persian");
+                    textViewTo.setText("English");
+                }
+            }
+        });
     }
 
     private void getWordData(String txtSearch) {
@@ -77,7 +99,8 @@ public class MainActivity2 extends AppCompatActivity {
                 }
                 catch (JSONException e){
                     e.printStackTrace();
-                    Toast.makeText(getApplicationContext(),"fail catch",Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(getApplicationContext(),"fail catch",Toast.LENGTH_SHORT).show();
+                    textViewResult.setText("");
                 }
 
             }
