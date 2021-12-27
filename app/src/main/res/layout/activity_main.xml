@@ -6,19 +6,16 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <Button
-        android:id="@+id/buttonNext"
-        android:layout_width="wrap_content"
+    <SeekBar
+        android:id="@+id/seekBar"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
-
-        android:text="next"
+        android:max="3"
+        android:progress="0"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:background="#808080"
-        android:textColor="@color/white"
-        />
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 

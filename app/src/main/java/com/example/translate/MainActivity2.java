@@ -57,9 +57,11 @@ public class MainActivity2 extends AppCompatActivity {
                 String txtSearch= editTextSearch.getText().toString();
 //                Log.d("test",txtSearch);
 
-                getWordData(txtSearch);
-                if (editTextSearch.getText().equals("")){
-                    textViewResult.setText("5");
+                if(textViewFrom.getText().equals("Persian")){
+                    getWordData_fa(txtSearch);
+                }
+                else{
+                    getWordData_en(txtSearch);
                 }
             }
 
@@ -75,16 +77,18 @@ public class MainActivity2 extends AppCompatActivity {
                 if(textViewFrom.getText().equals("Persian")){
                     textViewFrom.setText("English");
                     textViewTo.setText("Persian");
+                    editTextSearch.setText(textViewResult.getText());
                 }
                 else{
                     textViewFrom.setText("Persian");
                     textViewTo.setText("English");
+                    editTextSearch.setText(textViewResult.getText());
                 }
             }
         });
     }
 
-    private void getWordData(String txtSearch) {
+    private void getWordData_en(String txtSearch) {
 
         String url = "https://one-api.ir/translate/?token=153856:61bba509e8ce37.54039805&action=google&lang=fa&q="+txtSearch;
 
@@ -112,5 +116,32 @@ public class MainActivity2 extends AppCompatActivity {
         });
         requestQueue.add(jsonObjectRequest);
 
+    }
+    private void getWordData_fa(String txtSearch){
+        String url = "https://one-api.ir/translate/?token=153856:61bba509e8ce37.54039805&action=google&lang=en&q="+txtSearch;
+
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    String result=response.getString("result");
+                    textViewResult.setText(result);
+
+                }
+                catch (JSONException e){
+                    e.printStackTrace();
+//                    Toast.makeText(getApplicationContext(),"fail catch",Toast.LENGTH_SHORT).show();
+                    textViewResult.setText("");
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(),"fail",Toast.LENGTH_SHORT).show();
+            }
+        });
+        requestQueue.add(jsonObjectRequest);
     }
 }

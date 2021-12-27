@@ -20,7 +20,7 @@
         >
         <TextView
             android:id="@+id/textViewFrom"
-            android:layout_width="110dp"
+            android:layout_width="140dp"
             android:layout_height="wrap_content"
             android:text="Persian"
             android:background="@drawable/radio_button"
@@ -33,11 +33,12 @@
             android:layout_height="wrap_content"
             android:text="To"
             android:gravity="center"
+            android:layout_margin="5dp"
             />
 
         <TextView
             android:id="@+id/textViewTo"
-            android:layout_width="110dp"
+            android:layout_width="140dp"
             android:layout_height="wrap_content"
             android:text="English"
             android:background="@drawable/radio_button"
@@ -51,6 +52,7 @@
             android:layout_height="wrap_content"
             android:src="@drawable/ic_swap"
             android:background="@android:color/transparent"
+            android:layout_margin="5dp"
             app:tint="@color/black" />
     </LinearLayout>
 
