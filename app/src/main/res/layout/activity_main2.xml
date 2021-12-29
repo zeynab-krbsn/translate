@@ -68,7 +68,7 @@
         <EditText
             android:id="@+id/editTextSearch"
             android:layout_width="match_parent"
-            android:layout_height="250dp"
+            android:layout_height="290dp"
             android:layout_margin="20dp"
             android:background="@drawable/borders"
             android:gravity="start"
@@ -82,7 +82,7 @@
         <TextView
             android:id="@+id/textViewResult"
             android:layout_width="match_parent"
-            android:layout_height="250dp"
+            android:layout_height="290dp"
             android:layout_margin="20dp"
             android:background="@drawable/borders"
             android:gravity="start"
@@ -104,6 +104,5 @@
         android:background="@android:color/transparent"
         android:layout_marginEnd="30dp"
         />
-
 
     </RelativeLayout>
