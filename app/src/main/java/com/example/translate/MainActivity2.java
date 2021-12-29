@@ -2,6 +2,8 @@ package com.example.translate;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.os.Bundle;
 import android.text.Editable;
@@ -34,6 +36,7 @@ public class MainActivity2 extends AppCompatActivity {
     private TextView textViewResult;
     TextView textViewFrom,textViewTo;
     ImageButton imageButton_switch;
+//    ImageButton imageButtonCopy;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +46,7 @@ public class MainActivity2 extends AppCompatActivity {
         textViewFrom=findViewById(R.id.textViewFrom);
         textViewTo=findViewById(R.id.textViewTo);
         imageButton_switch=findViewById(R.id.imageButton_switch);
+        ImageButton imageButtonCopy=findViewById(R.id.imageButtonCopy);
 
         editTextSearch=findViewById(R.id.editTextSearch);
         textViewResult=findViewById(R.id.textViewResult);
@@ -86,6 +90,15 @@ public class MainActivity2 extends AppCompatActivity {
                     textViewTo.setText("English");
                     editTextSearch.setText(textViewResult.getText());
                 }
+            }
+        });
+
+        imageButtonCopy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ClipboardManager clipboardManager = (ClipboardManager) getSystemService(context.CLIPBOARD_SERVICE);
+                clipboardManager.setText(textViewResult.getText().toString());
+                Toast.makeText(getApplicationContext(),"Copied",Toast.LENGTH_SHORT).show();
             }
         });
     }
