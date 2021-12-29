@@ -2,10 +2,13 @@ package com.example.translate;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -33,6 +36,7 @@ public class MainActivity2 extends AppCompatActivity {
     private TextView textViewResult;
     TextView textViewFrom,textViewTo;
     ImageButton imageButton_switch;
+//    ImageButton imageButtonCopy;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,10 +46,12 @@ public class MainActivity2 extends AppCompatActivity {
         textViewFrom=findViewById(R.id.textViewFrom);
         textViewTo=findViewById(R.id.textViewTo);
         imageButton_switch=findViewById(R.id.imageButton_switch);
+        ImageButton imageButtonCopy=findViewById(R.id.imageButtonCopy);
 
         editTextSearch=findViewById(R.id.editTextSearch);
         textViewResult=findViewById(R.id.textViewResult);
-//        getWordData();
+        textViewResult.setMovementMethod(new ScrollingMovementMethod());
+
         editTextSearch.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -57,9 +63,11 @@ public class MainActivity2 extends AppCompatActivity {
                 String txtSearch= editTextSearch.getText().toString();
 //                Log.d("test",txtSearch);
 
-                getWordData(txtSearch);
-                if (editTextSearch.getText().equals("")){
-                    textViewResult.setText("5");
+                if(textViewFrom.getText().equals("Persian")){
+                    getWordData_fa(txtSearch);
+                }
+                else{
+                    getWordData_en(txtSearch);
                 }
             }
 
@@ -75,16 +83,27 @@ public class MainActivity2 extends AppCompatActivity {
                 if(textViewFrom.getText().equals("Persian")){
                     textViewFrom.setText("English");
                     textViewTo.setText("Persian");
+                    editTextSearch.setText(textViewResult.getText());
                 }
                 else{
                     textViewFrom.setText("Persian");
                     textViewTo.setText("English");
+                    editTextSearch.setText(textViewResult.getText());
                 }
+            }
+        });
+
+        imageButtonCopy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ClipboardManager clipboardManager = (ClipboardManager) getSystemService(context.CLIPBOARD_SERVICE);
+                clipboardManager.setText(textViewResult.getText().toString());
+                Toast.makeText(getApplicationContext(),"Copied",Toast.LENGTH_SHORT).show();
             }
         });
     }
 
-    private void getWordData(String txtSearch) {
+    private void getWordData_en(String txtSearch) {
 
         String url = "https://one-api.ir/translate/?token=153856:61bba509e8ce37.54039805&action=google&lang=fa&q="+txtSearch;
 
@@ -112,5 +131,32 @@ public class MainActivity2 extends AppCompatActivity {
         });
         requestQueue.add(jsonObjectRequest);
 
+    }
+    private void getWordData_fa(String txtSearch){
+        String url = "https://one-api.ir/translate/?token=153856:61bba509e8ce37.54039805&action=google&lang=en&q="+txtSearch;
+
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    String result=response.getString("result");
+                    textViewResult.setText(result);
+
+                }
+                catch (JSONException e){
+                    e.printStackTrace();
+//                    Toast.makeText(getApplicationContext(),"fail catch",Toast.LENGTH_SHORT).show();
+                    textViewResult.setText("");
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(),"fail",Toast.LENGTH_SHORT).show();
+            }
+        });
+        requestQueue.add(jsonObjectRequest);
     }
 }
