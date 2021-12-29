@@ -6,6 +6,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -45,7 +46,8 @@ public class MainActivity2 extends AppCompatActivity {
 
         editTextSearch=findViewById(R.id.editTextSearch);
         textViewResult=findViewById(R.id.textViewResult);
-//        getWordData();
+        textViewResult.setMovementMethod(new ScrollingMovementMethod());
+
         editTextSearch.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {

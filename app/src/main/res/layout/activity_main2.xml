@@ -1,97 +1,108 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity2">
+    tools:context=".MainActivity2"
+    android:scrollbars="vertical"
+    android:background="@color/black">
 
     <LinearLayout
-        android:id="@+id/radioGroup"
+        android:id="@+id/linearLayoutLanguage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:layout_marginTop="50dp"
         android:gravity="center"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.1"
-        >
+        android:orientation="horizontal">
+
         <TextView
             android:id="@+id/textViewFrom"
             android:layout_width="140dp"
             android:layout_height="wrap_content"
-            android:text="Persian"
-            android:background="@drawable/radio_button"
-            android:padding="15dp"
             android:layout_margin="10dp"
+            android:background="@drawable/borders"
             android:gravity="center"
-            />
+            android:padding="15dp"
+            android:text="English"
+            android:textColor="@color/white" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="To"
-            android:gravity="center"
             android:layout_margin="5dp"
-            />
+            android:gravity="center"
+            android:text="To"
+            android:textColor="@color/white" />
 
         <TextView
             android:id="@+id/textViewTo"
             android:layout_width="140dp"
             android:layout_height="wrap_content"
-            android:text="English"
-            android:background="@drawable/radio_button"
-            android:padding="15dp"
             android:layout_margin="10dp"
+            android:background="@drawable/borders"
             android:gravity="center"
-            />
+            android:padding="15dp"
+            android:text="Persian"
+            android:textColor="@color/white" />
+
         <ImageButton
             android:id="@+id/imageButton_switch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_swap"
-            android:background="@android:color/transparent"
             android:layout_margin="5dp"
-            app:tint="@color/black" />
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_swap"
+            app:tint="@color/white" />
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/linearLayout_second"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/linearLayoutLanguage"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.5"
+        android:layout_marginTop="10dp"
         >
+
         <EditText
             android:id="@+id/editTextSearch"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:hint="Enter text"
-            android:textSize="18sp"
-            android:gravity="start"
-            android:padding="10dp"
+            android:layout_height="250dp"
             android:layout_margin="20dp"
-            android:background="@drawable/radio_button"
-            />
+            android:background="@drawable/borders"
+            android:gravity="start"
+            android:hint="Enter text"
+            android:padding="10dp"
+            android:scrollbars="vertical"
+            android:textColor="@color/white"
+            android:textColorHint="#B3FFFFFF"
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/textViewResult"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:hint="Translation"
-            android:textSize="18sp"
-            android:textColor="@color/black"
-            android:gravity="start"
-            android:padding="10dp"
+            android:layout_height="250dp"
             android:layout_margin="20dp"
-            android:background="@drawable/radio_button"
-            />
+            android:background="@drawable/borders"
+            android:gravity="start"
+            android:hint="Translation"
+            android:padding="10dp"
+            android:scrollbars="vertical"
+            android:textColor="@color/white"
+            android:textColorHint="#B3FFFFFF"
+            android:textSize="18sp" />
     </LinearLayout>
 
+    <ImageButton
+        android:layout_below="@+id/linearLayout_second"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_copy"
+        android:layout_alignParentEnd="true"
+        android:background="@android:color/transparent"
+        android:layout_marginEnd="30dp"
+        />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </RelativeLayout>
